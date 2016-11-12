@@ -79,7 +79,7 @@ public void OnPluginStart()
 	g_hClientCookie_Color = RegClientCookie("chainlightning_cookiecolor", "Cookie for Chain Lightning colors.", CookieAccess_Private);
 	
 	OnLateLoad();
-	AutoExecConfig(true, "chainlightning");
+	AutoExecConfig(false, "chainlightning");
 }
 
 public void OnMapStart()
