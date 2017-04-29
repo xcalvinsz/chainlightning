@@ -1,3 +1,20 @@
+/*  TF2 Chain Lightning
+ *
+ *  Copyright (C) 2017 Calvin Lee (Chaosxk)
+ * 
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option) 
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with 
+ * this program. If not, see http://www.gnu.org/licenses/.
+ */
+ 
 #pragma semicolon 1
 
 #include <sourcemod>
@@ -64,7 +81,7 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
-	CreateConVar("sm_clight_version", PLUGIN_VERSION, "Chain Lightning Version.", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY);
+	CreateConVar("sm_clight_version", PLUGIN_VERSION, "Chain Lightning Version.", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY|FCVAR_DONTRECORD);
 	g_cEnabled = CreateConVar("sm_clight_enabled", "1", "Enables/Disables Chain Lightning.");
 	g_cDistance = CreateConVar("sm_clight_distance", "300", "Unit distance of how far the chain lighting can reach.");
 	g_cTargets = CreateConVar("sm_clight_targets", "3", "How many targets will chain lighting hurt at once.");
@@ -79,7 +96,7 @@ public void OnPluginStart()
 	g_hClientCookie_Color = RegClientCookie("chainlightning_cookiecolor", "Cookie for Chain Lightning colors.", CookieAccess_Private);
 	
 	OnLateLoad();
-	AutoExecConfig(false, "chainlightning");
+	AutoExecConfig(true, "chainlightning");
 }
 
 public void OnMapStart()
